@@ -1,0 +1,96 @@
+{
+  "private": false,
+  "name": "@antv/s2-vue",
+  "version": "2.0.0-next.11",
+  "main": "lib/index.js",
+  "unpkg": "dist/index.min.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "description": "use S2 with vue",
+  "license": "MIT",
+  "homepage": "https://s2.antv.antgroup.com",
+  "author": "https://github.com/orgs/antvis/people",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antvis/S2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/antvis/S2/issues"
+  },
+  "files": [
+    "esm",
+    "lib",
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "antv",
+    "s2",
+    "s2-vue",
+    "spreadsheet",
+    "pivot table",
+    "table",
+    "crossTable"
+  ],
+  "scripts": {
+    "start": "cross-env PLAYGROUND=true vite",
+    "clean": "rimraf lib esm dist temp",
+    "build": "npm-run-all clean --parallel build:umd build:cjs build:esm build:dts",
+    "build:esm": "cross-env FORMAT=es vite build",
+    "build:cjs": "cross-env FORMAT=cjs vite build",
+    "build:umd": "cross-env FORMAT=umd vite build",
+    "build:analysis": "cross-env FORMAT=es ANALYSIS=true vite build",
+    "build:dts": "run-s dts:*",
+    "build:size-limit": "size-limit",
+    "build:size-limit-json": "pnpm build:size-limit -- --json",
+    "dts:build": "vue-tsc -p tsconfig.declaration.json",
+    "dts:extract": "cross-env LIB=s2-vue node ../../scripts/dts.js",
+    "test": "jest --passWithNoTests",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:ci": "pnpm test -- --maxWorkers=3",
+    "test:ci-coverage": "pnpm test:coverage --maxWorkers=3",
+    "test:watch": "pnpm test -- --watch",
+    "tsc": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@antv/s2": ">=1.0.0",
+    "ant-design-vue": ">=3.2.0",
+    "vue": ">=3.x"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.5.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@antv/s2": "workspace:*",
+    "@antv/s2-shared": "workspace:*",
+    "@testing-library/vue": "^7.0.0",
+    "@vue/shared": "^3.3.4",
+    "@vue/tsconfig": "^0.4.0",
+    "ant-design-vue": "^3.2.20",
+    "vite-svg-loader": "^3.6.0",
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.8.19"
+  },
+  "size-limit": [
+    {
+      "path": "./dist/index.min.js",
+      "import": "{ createComponent }",
+      "limit": "20 kB"
+    },
+    {
+      "path": "./dist/style.min.css",
+      "limit": "5 kB"
+    }
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "tnpm": {
+    "mode": "pnpm"
+  }
+}

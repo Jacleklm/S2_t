@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "导出组件",
+    "en": "Export Component"
+  },
+  "demos": [
+    {
+      "filename": "export.tsx",
+      "title": {
+        "zh": "导出组件",
+        "en": "Export component"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/LuLsxJzuq/2021-11-16%25252022.15.51.gif"
+    }
+  ]
+}

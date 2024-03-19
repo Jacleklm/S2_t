@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "@antv/s2-shared",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "types": "temp/index.d.ts",
+  "description": "internal utility functions and constants shared across s2 packages.",
+  "license": "MIT",
+  "scripts": {
+    "build": "run-s clean build:dts",
+    "clean": "rimraf temp",
+    "build:dts": "tsc -p tsconfig.declaration.json",
+    "test": "jest",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:ci-coverage": "pnpm test:coverage --maxWorkers=3"
+  },
+  "devDependencies": {
+    "@antv/s2": "workspace:*",
+    "lodash": "^4.17.21"
+  },
+  "tnpm": {
+    "mode": "pnpm"
+  }
+}
